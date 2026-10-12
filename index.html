@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="img/flowers.png" type="image/x-icon" />
+    <title>Cempasúchil</title>
+  </head>
+  <body class="waiting">
+    <section class="intro">
+      <div class="greetings">
+        <span>H</span>
+        <span>o</span>
+        <span>l</span>
+        <span>a</span>
+      </div>
+      <p class="description">ESTE DETALLE ES PARA TI :)</p>
+      <button class="start">CLICK AQUÍ</button>
+    </section>
+
+    <main class="scene">
+      <div class="sky"></div>
+      <div class="moon"></div>
+      <div class="papel-picado">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="glow"></div>
+      <div class="ground"></div>
+
+      <h1 class="titulo">
+        Como Xóchitl y Huitzilin, mi amor florece solo para ti.
+      </h1>
+
+      <svg class="bouquet" viewBox="-160 -110 920 880" aria-label="Ramo de cempasúchil en forma de corazón">
+        <defs>
+          <linearGradient id="paper-rosa" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ff4fa8" />
+            <stop offset="1" stop-color="#c2006a" />
+          </linearGradient>
+          <linearGradient id="paper-morado" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#9b4dd6" />
+            <stop offset="1" stop-color="#5a1a8f" />
+          </linearGradient>
+          <radialGradient id="head-light">
+            <stop offset="0" stop-color="#fff3c4" stop-opacity="0.18" />
+            <stop offset="1" stop-color="#fff3c4" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <g id="paper"></g>
+        <polygon id="collar" class="collar" />
+        <polygon id="foliage" class="foliage" />
+        <g id="leaves"></g>
+        <g id="heads"></g>
+      </svg>
+
+      <div class="candles candles--left">
+        <div class="candle" style="--h: 12vmin"><i class="flame"></i></div>
+        <div class="candle" style="--h: 18vmin"><i class="flame"></i></div>
+        <div class="candle" style="--h: 9vmin"><i class="flame"></i></div>
+      </div>
+      <div class="candles candles--right">
+        <div class="candle" style="--h: 10vmin"><i class="flame"></i></div>
+        <div class="candle" style="--h: 16vmin"><i class="flame"></i></div>
+        <div class="candle" style="--h: 11vmin"><i class="flame"></i></div>
+      </div>
+
+      <canvas id="pile" class="petal-layer"></canvas>
+      <canvas id="air" class="petal-layer"></canvas>
+      <svg class="finale-heart" viewBox="-85 -70 170 160" aria-label="Corazón de cempasúchil"></svg>
+    </main>
+
+    <div id="song"></div>
+    <script src="main.js"></script>
+    <script src="petals.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </body>
+</html>

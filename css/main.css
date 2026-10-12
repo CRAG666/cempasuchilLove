@@ -1,0 +1,560 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap");
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --night: #07050f;
+  --rosa: #e4007c;
+  --naranja: #ff8c1a;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--night);
+  font-family: "Poppins", sans-serif;
+}
+
+#song {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.waiting .scene * {
+  animation-play-state: paused !important;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: azure;
+  text-align: center;
+  background-color: var(--night);
+  transition:
+    opacity 1.5s,
+    visibility 1.5s;
+}
+
+body:not(.waiting) .intro {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.greetings {
+  display: flex;
+  font-size: 7rem;
+  font-weight: 900;
+}
+
+.greetings > span {
+  animation: glow 2.5s ease-in-out infinite;
+}
+
+.greetings > span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.greetings > span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.greetings > span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.description {
+  font-size: 1.5rem;
+}
+
+.start {
+  padding: 0.6rem 1.8rem;
+  border: none;
+  border-radius: 80px;
+  font: inherit;
+  color: #fff;
+  background-color: var(--rosa);
+  box-shadow: 0 0 2rem rgba(228, 0, 124, 0.6);
+  cursor: pointer;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    #4a1a3d 0%,
+    #1d0f33 45%,
+    var(--night) 100%
+  );
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+}
+
+.sky span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 calc(var(--s) * 2) rgba(255, 240, 220, 0.7);
+  opacity: var(--o);
+}
+
+.sky .twinkle {
+  animation: twinkle var(--t) ease-in-out var(--d) infinite;
+}
+
+.moon {
+  position: absolute;
+  top: 16vh;
+  right: 12vw;
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #fff8e7, #f3d9a4 70%);
+  box-shadow: 0 0 6vmin 1vmin rgba(255, 220, 160, 0.35);
+  opacity: 0.85;
+}
+
+.papel-picado {
+  position: absolute;
+  top: 2vh;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 1vw;
+  padding: 0 1vw;
+  border-top: 0.4vmin solid #e8d8b0;
+  z-index: 5;
+}
+
+.papel-picado span {
+  --c: var(--rosa);
+  flex: 1;
+  height: 11vmin;
+  background-color: var(--c);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 85%,
+    87.5% 100%,
+    75% 85%,
+    62.5% 100%,
+    50% 85%,
+    37.5% 100%,
+    25% 85%,
+    12.5% 100%,
+    0 85%
+  );
+  mask:
+    linear-gradient(#000 0 0) top / 100% 15% no-repeat,
+    radial-gradient(circle, transparent 30%, #000 33%) center / 1.6vmin 1.6vmin;
+  transform-origin: top center;
+  animation: flutter 3s ease-in-out infinite alternate;
+}
+
+.papel-picado span:nth-child(6n + 2) {
+  --c: #ff7a00;
+}
+
+.papel-picado span:nth-child(6n + 3) {
+  --c: #7b2cbf;
+}
+
+.papel-picado span:nth-child(6n + 4) {
+  --c: #2bb673;
+}
+
+.papel-picado span:nth-child(6n + 5) {
+  --c: #ffc300;
+}
+
+.papel-picado span:nth-child(6n) {
+  --c: #1e88e5;
+}
+
+.papel-picado span:nth-child(odd) {
+  animation-duration: 2.4s;
+}
+
+.papel-picado span:nth-child(3n) {
+  animation-delay: -1.2s;
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  bottom: 22vh;
+  width: 80vmin;
+  height: 80vmin;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 140, 26, 0.35), transparent 65%);
+  animation: breathe 5s ease-in-out infinite alternate;
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12vh;
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+  background:
+    radial-gradient(circle at 12% 40%, #f7871f 0.5vmin, transparent 0.6vmin),
+    radial-gradient(circle at 27% 70%, #ffb347 0.4vmin, transparent 0.5vmin),
+    radial-gradient(circle at 38% 30%, #ef6c12 0.5vmin, transparent 0.6vmin),
+    radial-gradient(circle at 63% 60%, #f7871f 0.4vmin, transparent 0.5vmin),
+    radial-gradient(circle at 74% 35%, #ffb347 0.5vmin, transparent 0.6vmin),
+    radial-gradient(circle at 88% 65%, #ef6c12 0.4vmin, transparent 0.5vmin),
+    linear-gradient(#2a1226, #12070f);
+}
+
+.titulo {
+  position: absolute;
+  top: 14vh;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 0 4vw;
+  font-size: clamp(0.9rem, 2.2vw, 1.6rem);
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: #ffc857;
+  text-shadow: 0 0 1.5vmin rgba(255, 122, 0, 0.8);
+  opacity: 0;
+  animation: fadeIn 3s ease-in-out forwards;
+}
+
+.bouquet {
+  position: absolute;
+  left: 50%;
+  top: 24vh;
+  z-index: 2;
+  width: min(98vw, 78vh);
+  translate: -50% 0;
+  overflow: visible;
+  animation: sway 6s ease-in-out infinite alternate;
+}
+
+.sheet {
+  animation: unfold-paper 2.5s ease-out var(--d) both;
+}
+
+.sheet__paper {
+  fill-opacity: 0.85;
+  stroke: #ffc857;
+  stroke-width: 10;
+  stroke-opacity: 0.85;
+  stroke-linejoin: round;
+}
+
+.sheet__fold {
+  fill: rgba(40, 0, 40, 0.18);
+}
+
+.sheet--rosa {
+  fill: url(#paper-rosa);
+}
+
+.sheet--morado {
+  fill: url(#paper-morado);
+}
+
+.collar {
+  fill: #ffc1e0;
+  animation: appear 2s ease-out 2.5s both;
+}
+
+.foliage {
+  fill: #2f5e23;
+  animation: appear 2s ease-out 3s both;
+}
+
+.leaf {
+  fill: #5f9e2f;
+  animation: unfold 3s ease-out var(--d) both;
+}
+
+#leaves > g:nth-child(3n) .leaf {
+  fill: #4f8a27;
+}
+
+#leaves > g:nth-child(4n) .leaf {
+  fill: #74b53c;
+}
+
+.leaf__rachis {
+  fill: none;
+  stroke: #5f9e2f;
+  stroke-width: 2.2;
+}
+
+.leaflet__vein {
+  fill: none;
+  stroke: #c9e4a0;
+  stroke-width: 1;
+  opacity: 0.8;
+}
+
+.head {
+  animation: bloom 3.5s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d) both;
+}
+
+.petal {
+  stroke: rgba(255, 220, 150, 0.7);
+  stroke-width: 0.6;
+}
+
+.petal__cup {
+  fill: #5a1600;
+}
+
+.disc {
+  fill: #8a3a0a;
+}
+
+.floret {
+  fill: #c8661a;
+  stroke: #6b2a05;
+  stroke-width: 0.4;
+}
+
+.candles {
+  position: absolute;
+  bottom: 5vh;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5vmin;
+}
+
+.candles--left {
+  left: 6vw;
+}
+
+.candles--right {
+  right: 6vw;
+}
+
+.candle {
+  position: relative;
+  width: 4vmin;
+  height: var(--h);
+  border-radius: 0.6vmin 0.6vmin 0.3vmin 0.3vmin;
+  background: linear-gradient(90deg, #cdb68f, #fff3d6 40%, #e2cfa8 70%, #b89c70);
+  box-shadow: 0 0 3vmin rgba(255, 170, 60, 0.25);
+}
+
+.candle::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0.3vmin;
+  height: 1vmin;
+  translate: -50% 0;
+  background-color: #2b1a10;
+}
+
+.flame {
+  position: absolute;
+  bottom: calc(100% + 0.6vmin);
+  left: 50%;
+  width: 1.8vmin;
+  height: 3.6vmin;
+  translate: -50% 0;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: radial-gradient(
+    ellipse at 50% 75%,
+    #fff 0 15%,
+    #ffe08a 35%,
+    #ff9a1f 65%,
+    rgba(255, 90, 0, 0) 75%
+  );
+  transform-origin: 50% 90%;
+  animation: flicker 1.3s ease-in-out infinite;
+}
+
+.candle:nth-child(2) .flame {
+  animation-duration: 1.7s;
+}
+
+.flame::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18vmin;
+  height: 18vmin;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 160, 40, 0.3), transparent 60%);
+}
+
+.petal-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#pile {
+  z-index: 4;
+}
+
+#air {
+  z-index: 6;
+}
+
+.finale .scene > :not(.sky, #air, .finale-heart) {
+  filter: opacity(0);
+  transition: filter 2s;
+}
+
+.written #air {
+  filter: drop-shadow(0 0 0.6vmin rgba(255, 200, 80, 0.7));
+}
+
+.finale-heart {
+  position: absolute;
+  left: 50%;
+  z-index: 7;
+  translate: -50% 0;
+  overflow: visible;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    color: #fff;
+    text-shadow:
+      0 0 12px var(--naranja),
+      0 0 50px var(--naranja),
+      0 0 100px var(--rosa);
+  }
+  10%,
+  90% {
+    color: #111;
+    text-shadow: none;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.05;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes flutter {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-1.2deg);
+  }
+  to {
+    transform: rotate(1.2deg);
+  }
+}
+
+@keyframes unfold-paper {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-40deg);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes unfold {
+  from {
+    transform: scale(0) rotate(-20deg);
+  }
+}
+
+@keyframes bloom {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1) rotate(-2deg);
+  }
+  25% {
+    transform: scale(1.08, 0.94) rotate(2deg);
+  }
+  50% {
+    transform: scale(0.95, 1.06) rotate(-1deg);
+  }
+  75% {
+    transform: scale(1.04, 0.97) rotate(3deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .greetings {
+    font-size: 4rem;
+  }
+
+  .candles {
+    gap: 1.5vmin;
+  }
+
+  .candle {
+    width: 3vmin;
+  }
+}
